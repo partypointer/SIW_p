@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it" xml:lang="it" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(pageTitle=#{page.defaultHome.title})"> </head>
+	<body>
+	
+		<div th:replace="fragments/base.html :: logo" />
+	    
+	    <div class="container">
+	    	
+	    	<div class="bgorange bordered panel">
+		    	<h1 class="title" th:text="#{default.defaultHome.title}"><u>Area Riservata Utente</u></h1>
+		    	
+		    	<div class="buttonlist">
+					
+					<a th:href="@{/logout}">
+						<button class="btn" th:text="#{default.defaultHome.logout}">Esci</button>
+					</a>
+				</div>
+	   		</div>
+			
+			<div th:replace="fragments/base.html :: fondo" />
+	    </div>
+	    
+	</body>
+</html>

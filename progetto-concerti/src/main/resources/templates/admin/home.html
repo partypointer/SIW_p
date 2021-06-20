@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it" xml:lang="it" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(pageTitle=#{page.admin.home.head.title})"> </head>
+	<body>
+	
+		<div th:replace="fragments/base.html :: logo" />
+	    
+	    <div class="container">
+	    	
+	    	<div class="bgorange bordered panel">
+		    	<h1 class="title" th:text="#{index.title}"><u>Area Riservata agli Amministratori</u></h1>
+		    	
+		    	<div class="buttonlist">
+					<a th:href="@{/admin/addOpera}">
+						<button class="btn" th:text="#{admin.adminHome.addOpera}">Aggiungi un'Opera</button>
+					</a>
+					<a th:href="@{/admin/removeOpera}">
+						<button class="btn" th:text="#{admin.adminHome.removeOpera}">Rimuovi un'Opera</button>
+					</a>
+					
+					<a th:href="@{/admin/addCollezione}">
+						<button class="btn" th:text="#{admin.adminHome.addCollezione}">Aggiungi una Collezione</button>
+					</a>
+					<a th:href="@{/admin/addToCollezione}">
+						<button class="btn" th:text="#{admin.adminHome.addToCollezione}">Aggiungi Opera alla Collezione</button>
+					</a>
+					<a th:href="@{/admin/removeCollezione}">
+						<button class="btn" th:text="#{admin.adminHome.removeCollezione}">Rimuovi una Collezione</button>
+					</a>
+					
+					<a th:href="@{/admin/addArtista}">
+						<button class="btn" th:text="#{admin.adminHome.addArtista}">Aggiungi un'Artista</button>
+					</a>
+					
+					<a th:href="@{/logout}">
+						<button class="btn" th:text="#{admin.adminHome.logout}">Esci</button>
+					</a>
+				</div>
+	   		</div>
+			
+			<div th:replace="fragments/base.html :: fondo" />
+	    </div>
+	    
+	</body>
+</html>

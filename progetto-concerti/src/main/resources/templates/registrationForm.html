@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(pageTitle=#{page.registration.head.title})"> </head>
+	<body>
+	
+		<div th:replace="fragments/base.html :: logo" />
+	    
+	    <div class="container">
+	    	
+	    	<div class="bgorange bordered panel">
+		    	<h1 class="title" th:text="#{registration.title}">Museo degli Uffizi</h1>
+		    	
+		    	<form th:action="@{/register}" method="POST">
+                
+		    		<span class="loginFormFieldName" th:text="#{registration.name}" />
+		    		<input type="text" class="loginFormFieldInput" th:field="${user.nome}" th:attr="placeholder=#{registration.hint.name}" required /><br><br>
+		    		
+		    		<span class="loginFormFieldName" th:text="#{registration.surname}" />
+					<input type="text" class="loginFormFieldInput" th:field="${user.cognome}" th:attr="placeholder=#{registration.hint.surname}" required><br><br>
+		    		
+		    		<span class="loginFormFieldName" th:text="#{registration.username}" />
+		    		<input type="text" class="loginFormFieldInput" th:field="${account.username}" th:attr="placeholder=#{registration.hint.username}" required><br><br>
+		    		
+		    		<span class="loginFormFieldName" th:text="#{registration.password}" />
+					<input type="password" class="loginFormFieldInput" th:field="${account.password}" th:attr="placeholder=#{registration.hint.password}" required><br><br>
+		    		
+		    		<span class="loginFormFieldName" th:text="#{registration.password.confirm}" />
+					<input type="password" class="loginFormFieldInput" name="confirmPassword" id="confirmPassword" th:attr="placeholder=#{registration.hint.password.confirm}" required><br><br>
+		    		
+		    		<div class="buttonlist">
+						<button type="submit" class="btn" th:text="#{registration.confirm}">Registra</button>
+					</div>
+					
+		    	</form>
+	   		</div>
+			
+			<div th:replace="fragments/base.html :: fondo" />
+	    </div>
+	    
+	</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="it" xml:lang="it" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(pageTitle=#{page.index.head.title})"> </head>
+	<body>
+	
+		<div th:replace="fragments/base.html :: logo" />
+	    
+	    <div class="container">
+	    	
+	    	<div class="bgpurple bordered panel">
+		    	<h1 class="title" th:text="#{index.title}"><u>Museo degli Uffizi</u></h1>
+		    	
+		    	<div class="buttonlist">
+					<a th:href="@{/login}">
+						<button class="btn" th:text="#{index.login}">Accedi</button>
+					</a>
+					
+					<a th:href="@{/register}">
+						<button class="btn" th:text="#{index.registration}">Registrati</button>
+					</a>
+				</div>
+	   		</div>
+			
+			<div th:replace="fragments/base.html :: fondo" />
+	    </div>
+	    
+	</body>
+</html>
