@@ -24,6 +24,7 @@ public @Data class TipologiaPosto {
 	@Column(nullable=false)
 	private String nome;
 
+	@Column(length = 500)
 	private String descrizione;
 
 	/* Numero di posti realmente disponibili */

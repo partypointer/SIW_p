@@ -24,18 +24,28 @@ public class AccountValidator implements Validator {
     	Account account = (Account) o;
         String username = account.getUsername().trim();
         String password = account.getPassword().trim();
-
+        String confermaPassword = account.getConfermaPassword().trim();
+        
         if (username.isEmpty())
-            errors.rejectValue("username", "required");
-        else if (username.length() < MIN_USERNAME_LENGTH || username.length() > MAX_USERNAME_LENGTH)
-            errors.rejectValue("username", "size");
-        else if (this.accountService.getAccount(username) != null)
-            errors.rejectValue("username", "duplicate");
+            errors.rejectValue("username", "error.registration.username.empty");
+        if (username.length() < MIN_USERNAME_LENGTH)
+        	errors.rejectValue("username", "error.registration.username.underMinLength");
+        if (username.length() > MAX_USERNAME_LENGTH)
+        	errors.rejectValue("username", "error.registration.username.overMaxLength");
+        
+        /* Controllo duplicati */
+        if (this.accountService.getAccount(username) != null)
+        	errors.rejectValue("username", "error.registration.username.duplicate");
 
         if (password.isEmpty())
-            errors.rejectValue("password", "required");
-        else if (password.length() < MIN_PASSWORD_LENGTH || password.length() > MAX_PASSWORD_LENGTH)
-            errors.rejectValue("password", "size");
+            errors.rejectValue("password", "error.registration.password.empty");
+        if (password.length() < MIN_PASSWORD_LENGTH)
+        	errors.rejectValue("password", "error.registration.password.underMinLength");
+        if (password.length() > MAX_PASSWORD_LENGTH)
+        	errors.rejectValue("password", "error.registration.password.overMaxLength");
+        
+        if(!(password.equals(confermaPassword)))
+        	errors.rejectValue("confermaPassword", "error.registration.password.notEqualToConfirmPassword");
     }
 
     @Override

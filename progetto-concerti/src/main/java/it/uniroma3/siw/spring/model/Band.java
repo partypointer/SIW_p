@@ -22,8 +22,11 @@ public @Data class Band {
 	
 	@Column(nullable=false)
 	private String nome;
-	
-	private LocalDate dataFormazione;
+
+	@Column(nullable=false)
+	private Integer annoFormazione;
+
+	private Integer annoScioglimento;
 	
 	private String descrizione;
 	

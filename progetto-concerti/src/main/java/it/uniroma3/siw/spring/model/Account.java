@@ -23,6 +23,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import lombok.Data;
 
@@ -41,6 +42,9 @@ public @Data class Account {
 
 	@Column(nullable = false)
 	private String password;
+	
+	@Transient
+	private String confermaPassword;
     
 	@Column(nullable = false)
 	private String ruolo;

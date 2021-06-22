@@ -23,6 +23,7 @@ public class BandValidator implements Validator {
 	/** Si accettano bande omonime **/
 	public void validate(Object o, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "annoFormazione", "required");
 		
 		Band b = (Band)o;
 		if (!errors.hasErrors()) {

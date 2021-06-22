@@ -23,6 +23,7 @@ public @Data class Concerto {
 	@Column(nullable=false)
 	private String nome;
 	
+	@Column(length=500)
 	private String descrizione;
 	
 	@Column(nullable=false)

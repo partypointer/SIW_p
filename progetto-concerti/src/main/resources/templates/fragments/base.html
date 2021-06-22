@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head th:fragment="headerfiles(pageTitle)">
 		<meta charset="UTF-8" />
+		<link rel="icon" th:href="@{/images/logo3.png}">
 		<link th:href="@{/css/my-style.css}" rel="stylesheet">
 		<title th:text="${pageTitle}">Museo degli Uffizi</title>
 		<script>
@@ -35,7 +36,7 @@
 	<body>
 		<div th:fragment="logo">
 			<a th:href="@{/}">
-				<img class="logo" th:src="@{/images/logo2.png}" alt="logo">
+				<img class="logo" th:src="@{/images/logo3.png}" alt="logo">
 			</a>
 		</div>
 		

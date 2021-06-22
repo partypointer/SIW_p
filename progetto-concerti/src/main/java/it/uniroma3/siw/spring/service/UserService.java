@@ -24,6 +24,12 @@ public class UserService {
         Optional<User> result = this.userRepository.findById(id);
         return result.orElse(null);
     }
+    
+    @Transactional
+    public User getUser(String nome, String cognome) {
+        Optional<User> result = this.userRepository.findByNomeAndCognome(nome, cognome);
+        return result.orElse(null);
+    }
 
     @Transactional
     public User saveUser(User user) {
