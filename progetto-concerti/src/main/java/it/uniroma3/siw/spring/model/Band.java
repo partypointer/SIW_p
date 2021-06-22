@@ -29,7 +29,8 @@ public @Data class Band {
 	private Integer annoScioglimento;
 	
 	private String descrizione;
-	
+
+	@Column(nullable=false)
 	private String genere;
 	
 	@OneToMany(mappedBy="band")

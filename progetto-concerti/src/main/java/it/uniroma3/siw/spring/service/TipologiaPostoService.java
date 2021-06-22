@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.spring.model.Account;
+import it.uniroma3.siw.spring.model.Concerto;
 import it.uniroma3.siw.spring.model.TipologiaPosto;
 import it.uniroma3.siw.spring.repository.TipologiaPostoRepository;
 
@@ -22,6 +23,11 @@ public class TipologiaPostoService {
     public TipologiaPosto getTipologiaPosto(Long id) {
         Optional<TipologiaPosto> result = this.tipologiaPostoRepository.findById(id);
         return result.orElse(null);
+    }
+
+    @Transactional
+    public List<TipologiaPosto> getTipologiaPostoByConcerto(Concerto concerto) {
+    	return this.tipologiaPostoRepository.findByConcerto(concerto);
     }
 
     @Transactional

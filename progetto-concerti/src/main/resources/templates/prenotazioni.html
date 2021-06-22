@@ -8,12 +8,15 @@
 	    <div class="container">
 		    <div class="prenotazioniPanel">
 		    	
-		    	<div class="bgpurple bordered ownedTicketsPanel">
-			    	<h3 th:text="#{prenotazioni.msg}">Le credenziali sono errate, la invitiamo a riprovare.</h3>
+		    	<div class="bgorange bordered prenotazioniPanel">
+			    	<h3 th:text="#{prenotazioni.title.prenotazioniEffettuate}">Prenotazioni</h3>
+			    	<div class="bordered" th:each="concerto : ${concerti}">
+			    	</div>
 		   		</div>
 		   		
-		    	<div class="bgpurple bordered availableConcertsPanel">
-			    	<div th:each="concerto : ${concerti}">
+		    	<div class="bgpurple bordered concertiPanel">
+			    	<h3 th:text="#{prenotazioni.title.concertiDisponibili}">Concerti Disponibili</h3>
+			    	<div class="bordered" th:each="concerto : ${concerti}" th:if="${concerto.dataOraInizio.after(#dates.createNow())}">
 						<div>
 							<img class="bordered concertoIcon" th:src="@{${concerto.iconaLink}}" alt="icona">
 						</div>
@@ -21,6 +24,11 @@
 			            <span class="concertoField" th:text="${concerto.dataOraInizio}">00:00:00</span><br>
 			            <span class="concertoField" th:text="${concerto.indirizzoLocation}">Via del Lorem Ipsum...</span><br>
 			            <span class="concertoField" th:text="${concerto.descrizione}">Lorem Ipsum...</span><br>
+						<div>
+							<a th:href="@{|/addConcerto/${concerto.id}|}">
+							<img class="addSubtractIcon" th:src="@{/images/addIcon.png}" alt="icona">
+							</a>
+						</div>
 			        </div>
 		   		</div>
 				

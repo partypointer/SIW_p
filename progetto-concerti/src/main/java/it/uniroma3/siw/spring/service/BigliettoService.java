@@ -24,6 +24,11 @@ public class BigliettoService {
     }
 
     @Transactional
+    public List<Biglietto> getBigliettiFromAccount(Long id) {
+        return this.bigliettoRepository.findByProprietario(id);
+    }
+
+    @Transactional
     public Biglietto saveBiglietto(Biglietto biglietto) {
         return this.bigliettoRepository.save(biglietto);
     }

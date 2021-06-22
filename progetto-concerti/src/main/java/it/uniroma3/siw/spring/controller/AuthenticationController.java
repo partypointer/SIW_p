@@ -65,28 +65,15 @@ public class AuthenticationController {
                  	BindingResult accountBindingResult,
                  Model model) {
 
-    	/* Controllo del campo conferma password */
-    	/* Ora il controllo viene effettuato nell'apposito validator dell'account */
-    	// if(confirmPassword.compareTo(account.getPassword()) != 0) return "registrationForm";
-    	
         // validate user and credentials fields
         this.userValidator.validate(user, userBindingResult);
         this.accountValidator.validate(account, accountBindingResult);
 
         // if neither of them had invalid contents, store the User and the Credentials into the DB
-        if(!userBindingResult.hasErrors() && ! accountBindingResult.hasErrors()) {
-            // set the user and store the credentials;
-            // this also stores the User, thanks to Cascade.ALL policy
-
-        	/* Controllo esistenza di un account con lo stesso username di quello durante la registrazione */
-        	/* Ora il controllo viene svolto nell'apposito validator */
-        	// if(accountService.getAccount(account.getUsername()) != null) return "registrationForm";
-        	/* Controllo esistenza di un utente con lo stesso cognome e nome */
-        	/* Ora il controllo viene svolto nell'apposito validator */
-        	// if(userService.alreadyExists(user)) return "registrationForm";
-        	
+        if(!userBindingResult.hasErrors() && !accountBindingResult.hasErrors()) {
         	account.setUser(user);
         	user.setAccount(account);
+        	
             accountService.saveAccount(account);
             return "registrationSuccessful";
         }

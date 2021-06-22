@@ -24,11 +24,12 @@ public class BandValidator implements Validator {
 	public void validate(Object o, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "annoFormazione", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "genere", "required");
 		
 		Band b = (Band)o;
 		if (!errors.hasErrors()) {
 			logger.debug("confermato: valori non nulli");
-			if (this.bandService.alreadyExists(b)) {
+			if (this.bandService.alreadyExists(b.getNome())) {
 				logger.debug("e' un duplicato");
 				errors.reject("duplicato");
 			}

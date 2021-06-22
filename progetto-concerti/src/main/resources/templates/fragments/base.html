@@ -17,7 +17,6 @@
 			  	/* E' stato trovato un parametro error da eliminare! '*/
 				if(indexOfErrorParameter != -1){
 					/* Attenzione! Taglia fuori TUTTI i parametri successivi a error!*/
-					alert("error index parameter: " + indexOfErrorParameter);
 					noLanguageParameterURL = currentURL.substring(0, indexOfErrorParameter);
 				}
 				
@@ -27,7 +26,6 @@
 			  	/* E' stato trovato un parametro language da eliminare! '*/
 				if(indexOfLanguageParameter != -1){
 					/* Attenzione! Taglia fuori TUTTI i parametri successivi a lang!*/
-					alert("language index parameter: " + indexOfLanguageParameter);
 					noLanguageParameterURL = currentURL.substring(0, indexOfLanguageParameter);
 				}
 			  

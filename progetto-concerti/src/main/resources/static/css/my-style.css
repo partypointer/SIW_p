@@ -69,6 +69,9 @@
 	background: linear-gradient(to left, #333, #333 50%, #eee 75%, #333 75%);
 	-webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.5), rgba(255,255,255,0.5)), linear-gradient(to right, rgba(0,0,0,0.5), rgba(255,255,255,0.5));
 }
+.bgorange{
+	background-color: rgba(255, 95, 17, 0.5);
+}
 
 .bordered{
 	border: 2px solid black;
@@ -95,6 +98,7 @@
 	text-align: center;
 	border-radius: 7%;
 }
+/* --- logical inline prenotazioni structure --- */
 
 .prenotazioniPanel{
 	display: flex;
@@ -105,7 +109,27 @@
 	justify-content: space-between;
 	border-radius: 7%;
 }
-/* --- logical inline structure --- */
+.prenotazioniPanel .concertiPanel{
+	width: 50%;
+	display: inline;
+	margin: 3%;
+	border-radius: 7%;
+}
+.concertoIcon{
+	width: 70px;
+	height: 70px;
+	margin: 3%;
+}
+.concertoField{
+	margin: 3%;
+	max-inline-size: 120px;
+}
+.addSubtractIcon{
+	width: 30px;
+	height: 30px;
+	margin: 2%;
+}
+/* --- logical inline prenotazioni structure --- */
 /* --- base --- */
 body{
 	background-repeat: no-repeat;
@@ -124,20 +148,14 @@ body{
 .bg3{
 	background-image: url('/images/bg3.jpg');
 }
+.bg4{
+	background-image: url('/images/bg4.jpg');
+}
 
 .logo {
 	width: 70px;
 	height: 70px;
 	padding-left: 5%;
-}
-
-.concertoIcon{
-	width: 70px;
-	height: 70px;
-	margin: 3%;
-}
-.concertoField{
-	margin: 3%;
 }
 
 .title{
@@ -166,8 +184,9 @@ body{
 }
 
 .dropdown-content {
-  background-color: rgb(255, 128, 64);
+  background-color: rgba(128, 128, 192, 1);;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 2%;
 }
 
 .buttonlist{
@@ -235,8 +254,46 @@ body{
 	width: 90%;
 }
 /* --- login --- */
+/* --- slider --- */
 
+.slidecontainer {
+  width: 100%;
+}
 
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background:rgba(128, 128, 192, 1);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgb(203, 203, 228);
+  cursor: pointer;
+}
+/* --- slider --- */
 
 
 
