@@ -9,7 +9,21 @@
 	    	
 	    	<div class="bgpurple bordered panel">
 		    	<h1 class="title" th:text="#{index.title}"><u>Biglietteria</u></h1>
-		    	
+
+				<h3 class="paragraph" th:text="#{index.paragraph.one}">Paragrafo 1</h3>
+				
+				<div>
+					<img class="imgConcerto" th:src="@{/images/concerto1.jpg}" alt="concert1">
+				</div>
+				<div>
+					<img class="imgConcerto" th:src="@{/images/concerto2.jpg}" alt="concert2">
+				</div>
+				<div>
+					<img class="imgConcerto" th:src="@{/images/concerto3.jpg}" alt="concert3">
+				</div>
+				
+				<h3 class="paragraph" th:text="#{index.paragraph.two}">Paragrafo 2</h3>
+
 		    	<div class="buttonlist">
 					<a th:href="@{/login}">
 						<button class="btn" th:text="#{index.login}">Accedi</button>

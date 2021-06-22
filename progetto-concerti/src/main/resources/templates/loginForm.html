@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head th:replace="fragments/base.html :: headerfiles(pageTitle=#{page.loginForm.head.title})"> </head>
-	<body>
+	<body class="bg1">
 	
 		<div th:replace="fragments/base.html :: logo" />
 	    
 	    <div class="container">
 	    	
-	    	<div class="bgpurple bordered panel">
+	    	<div class="bggrey bordered panel">
 		    	<h1 class="title" th:text="#{loginForm.title}">Login</h1>
 		    	
 		    	<form th:action="@{/login}" method="POST">

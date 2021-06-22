@@ -47,21 +47,27 @@
 .bgwhite{
 	background-color: white;
 }
-
 .bggold{
-	background-color: rgb(232, 232, 0, 0.5);
+	background-color: rgba(232, 232, 0, 0.5);
 }
-
 .bgblue{
 	background-color: rgba(0, 128, 255, 0.5);
 }
-
 .bgred{
 	background-color: rgba(255, 128, 128, 0.5);
 }
-
+.bggrey{
+	background-color: rgba(128, 128, 128, 0.5);
+}
 .bgpurple{
 	background-color: rgba(128, 128, 192, 0.5);
+}
+.bgInstagramGradient{
+	background: linear-gradient(#e66465, #9198e5);
+}
+.specialBlackWhiteGradient{
+	background: linear-gradient(to left, #333, #333 50%, #eee 75%, #333 75%);
+	-webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.5), rgba(255,255,255,0.5)), linear-gradient(to right, rgba(0,0,0,0.5), rgba(255,255,255,0.5));
 }
 
 .bordered{
@@ -89,6 +95,16 @@
 	text-align: center;
 	border-radius: 7%;
 }
+
+.prenotazioniPanel{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+	justify-content: space-between;
+	border-radius: 7%;
+}
 /* --- logical inline structure --- */
 /* --- base --- */
 body{
@@ -99,10 +115,29 @@ body{
 	background-position: center;
 }
 
+.bg1{
+	background-image: url('/images/bg1.jpg');
+}
+.bg2{
+	background-image: url('/images/bg2.jpg');
+}
+.bg3{
+	background-image: url('/images/bg3.jpg');
+}
+
 .logo {
 	width: 70px;
 	height: 70px;
 	padding-left: 5%;
+}
+
+.concertoIcon{
+	width: 70px;
+	height: 70px;
+	margin: 3%;
+}
+.concertoField{
+	margin: 3%;
 }
 
 .title{
@@ -112,12 +147,15 @@ body{
 	margin-top: 1%;
 }
 
+.paragraph{
+	max-inline-size: 100%;
+}
+
 .btn {
 	color: black;
 	background-color: rgb(180, 159, 196);
 	padding: 8px;
 	font-size: 18;
-	border-radius: 10%;
 	margin-top: 12%;
 }
 
@@ -144,7 +182,7 @@ body{
     margin-top: 2em;
 }
 /* --- base --- */
-/* --- explore --- */
+/* --- see --- */
 .operePanel{
 	display: flex;
 	flex-direction: row;
@@ -168,7 +206,7 @@ body{
 	font-size: 12px;
 }
 
-.imgOpera{
+.imgConcerto{
 	max-height: 480px;
 	max-width: 240px;
 }
@@ -182,8 +220,8 @@ body{
 	margin-bottom: 2%;
 	padding: 2%;
 }
-/* --- explore --- */
-/* --- loginCuratori --- */
+/* --- see --- */
+/* --- login --- */
 .loginFormFieldName {
 	font-style: italic;
 	font-size: 14px;
@@ -196,7 +234,7 @@ body{
 	padding-right: 6px;
 	width: 90%;
 }
-/* --- loginCuratori --- */
+/* --- login --- */
 
 
 

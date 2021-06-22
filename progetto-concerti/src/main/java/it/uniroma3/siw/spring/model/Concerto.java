@@ -31,6 +31,9 @@ public @Data class Concerto {
 
 	@Column(nullable=false)
 	private String indirizzoLocation;
+
+	@Column(nullable=false)
+	private String iconaLink;
 	
 	@OneToMany(mappedBy="concerto")
 	private List<TipologiaPosto> tipologiaPosti;
