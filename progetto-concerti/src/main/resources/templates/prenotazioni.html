@@ -16,18 +16,22 @@
 		   		
 		    	<div class="bgpurple bordered concertiPanel">
 			    	<h3 th:text="#{prenotazioni.title.concertiDisponibili}">Concerti Disponibili</h3>
-			    	<div class="bordered" th:each="concerto : ${concerti}" th:if="${concerto.dataOraInizio.after(#dates.createNow())}">
-						<div>
-							<img class="bordered concertoIcon" th:src="@{${concerto.iconaLink}}" alt="icona">
-						</div>
-			            <span class="concertoField" th:text="${concerto.nome}">Concertone</span><br>
-			            <span class="concertoField" th:text="${concerto.dataOraInizio}">00:00:00</span><br>
-			            <span class="concertoField" th:text="${concerto.indirizzoLocation}">Via del Lorem Ipsum...</span><br>
-			            <span class="concertoField" th:text="${concerto.descrizione}">Lorem Ipsum...</span><br>
-						<div>
-							<a th:href="@{|/addConcerto/${concerto.id}|}">
-							<img class="addSubtractIcon" th:src="@{/images/addIcon.png}" alt="icona">
-							</a>
+			    	<div class="bordered" th:each="concerto : ${concerti}">
+						<div th:if="${#lists.size(concerti) > 0}">
+							<div>
+								<div>
+									<img class="bordered concertoIcon" th:src="@{${concerto.iconaLink}}" alt="icona">
+								</div>
+					            <span class="concertoField" th:text="${concerto.nome}">Concertone</span><br>
+					            <span class="concertoField" th:text="${concerto.dataInizio}">00:00:00</span><br>
+					            <span class="concertoField" th:text="${concerto.indirizzoLocation}">Via del Lorem Ipsum...</span><br>
+					            <span class="concertoField" th:if="${concerto.descrizione != null}" th:text="${concerto.descrizione}">Lorem Ipsum...</span><br>
+								<div>
+									<a th:href="@{|/addConcerto/${concerto.id}|}">
+									<img class="addSubtractIcon" th:src="@{/images/addIcon.png}" alt="icona">
+									</a>
+								</div>
+							</div>
 						</div>
 			        </div>
 		   		</div>

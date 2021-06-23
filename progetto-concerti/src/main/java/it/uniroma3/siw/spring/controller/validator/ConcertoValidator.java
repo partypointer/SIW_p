@@ -21,12 +21,15 @@ public class ConcertoValidator implements Validator {
 
 	@Override
 	public void validate(Object o, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dataOraInizio", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dataAcquisizione", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "error.addConcerto.nome.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dataInizio", "error.addConcerto.dataInizio.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "indirizzoLocation", "error.addConcerto.indirizzoLocation.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "iconaLink", "error.addConcerto.iconaLink.empty");
+		
 		if (!errors.hasErrors()) {
 			logger.debug("confermato: valori non nulli");
-			if (this.concertoService.alreadyExists((Concerto)o)) {
+			Concerto concerto = (Concerto) o;
+			if (this.concertoService.alreadyExists(concerto.getNome())) {
 				logger.debug("e' un duplicato");
 				errors.reject("duplicato");
 			}

@@ -98,6 +98,23 @@
 	text-align: center;
 	border-radius: 7%;
 }
+/* --- logical inline addPartecipazioni structure --- */
+.partecipazioniContainer{
+	display: flexbox;
+	padding: 2%;
+	margin: 2%;
+}
+.partecipazioniConcerti .partecipazioniBands{
+	display:inline-block;
+	padding: 4%;
+	margin: 4%;
+}
+.partecipazioniElement{
+	margin: 1%;
+	padding: 2%;
+	margin: 2%;
+}
+/* --- logical inline addPartecipazioni structure --- */
 /* --- logical inline prenotazioni structure --- */
 
 .prenotazioniPanel{

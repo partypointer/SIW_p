@@ -28,7 +28,7 @@ import it.uniroma3.siw.spring.service.UserService;
 
 @Controller
 @SessionAttributes("accountCorrente")
-public class AuthenticationController {
+public class AuthenticationController extends SessionCheckerController{
 	
 	@Autowired
 	private AccountService accountService;

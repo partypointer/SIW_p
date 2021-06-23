@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.spring.model.Account;
+import it.uniroma3.siw.spring.model.Band;
+import it.uniroma3.siw.spring.model.Concerto;
 import it.uniroma3.siw.spring.model.Partecipazione;
 import it.uniroma3.siw.spring.repository.PartecipazioneRepository;
 
@@ -21,6 +23,12 @@ public class PartecipazioneService {
     @Transactional
     public Partecipazione getPartecipazione(Long id) {
         Optional<Partecipazione> result = this.partecipazioneRepository.findById(id);
+        return result.orElse(null);
+    }
+
+    @Transactional
+    public Partecipazione getPartecipazione(Concerto concerto, Band band) {
+        Optional<Partecipazione> result = this.partecipazioneRepository.findByConcertoAndBand(concerto, band);
         return result.orElse(null);
     }
 

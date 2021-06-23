@@ -57,22 +57,46 @@ public @Data class TipologiaPosto {
 	 * molto importanti della classe **/
 	public TipologiaPosto() {
 		this.biglietti = new ArrayList<Biglietto>();
-		this.setPosti();
 	}
 	
-	
-	/* Imposta i posti di overbooking e i posti attualmente disponibili dati
-	 * i campi obbligatori della classe (percentuale di overbooking e il numero
-	 * massimo di posti disponibili) */
-	private void setPosti() {
-		this.setPostiOverbooking(this.calcolaPostiOverbooking());
-		this.setPostiAttualmentePrenotabili(this.calcolaPostiAttualmentePrenotabili());
+	/** Springboot sembra utilizzare il costruttore di default anche solo per generare
+	 * parti di modello, dato che all'inizio maxPostiRealiDisponibili e percentualeOverbooking
+	 * sono nulli, non si può calcolare in tale costruttore i posti di overbooking e dunque
+	 * i posti attualmente prenotabili: risulterebbe in un NullPointerException! **/
+	public void setPosti() {
+		this.calcolaPostiOverbooking();
+		this.calcolaPostiAttualmentePrenotabili();
 	}
 
+	/** Calcola i posti di overbooking data una percentuale sui posti attualmente
+	 * disponibili **/
+	private void calcolaPostiOverbooking(){
+		Integer percentualeOverbooking = this.getPercentualeOverbooking();
+		Integer maxPostiRealiDisponibili = this.getMaxPostiRealiDisponibili();
+		Long postiOverbooking = null;
+		
+		if(percentualeOverbooking != null && maxPostiRealiDisponibili != null)
+			postiOverbooking = Long.valueOf((percentualeOverbooking * maxPostiRealiDisponibili) / 100);
+		else postiOverbooking = Long.valueOf(0);
+		
+		this.setPostiOverbooking(percentualeOverbooking);
+	}
+	
+	/** Calcola il numero di posti attualmente prenotabili sommando ai posti
+	 * attualmente disponibili quelli di overbooking **/
+	private void calcolaPostiAttualmentePrenotabili(){
+		Integer postiOverbooking = this.getPostiOverbooking();
+		Integer maxPostiRealiDisponibili = this.getMaxPostiRealiDisponibili();
+		Integer postiTotali = maxPostiRealiDisponibili + maxPostiRealiDisponibili;
+		
+		if(postiOverbooking != null && maxPostiRealiDisponibili != null) setPostiAttualmentePrenotabili(postiTotali);
+		else setPostiAttualmentePrenotabili(0);
+	}
+	
 	/** Restituisce il prezzo totale in base alla quantità di posti.
 	 * Se la quantità di posti è minore di 1, restituisce il long pari a zero. (0L) **/
 	public Long prezzoTotale(int numeroPosti){
-		if( this.isValidNumeroDiPosti(numeroPosti) ) return this.prezzoUnitario * numeroPosti;
+		if(this.isValidNumeroDiPosti(numeroPosti) ) return this.prezzoUnitario * numeroPosti;
 		return 0L; // il valore nullo di Long
 	}
 	
@@ -93,25 +117,6 @@ public @Data class TipologiaPosto {
 			return true;
 		}
 		return false;
-	}
-
-	
-	/** Calcola il numero di posti attualmente prenotabili sommando ai posti
-	 * attualmente disponibili quelli di overbooking **/
-	private int calcolaPostiAttualmentePrenotabili(){
-		Integer postiOverbooking = this.calcolaPostiOverbooking();
-		Integer maxPostiRealiDisponibili = this.getMaxPostiRealiDisponibili();
-		if(postiOverbooking != null && maxPostiRealiDisponibili != null) return postiOverbooking + maxPostiRealiDisponibili;
-		return 0;
-	}
-	
-	/** Calcola i posti di overbooking data una percentuale sui posti attualmente
-	 * disponibili **/
-	private int calcolaPostiOverbooking(){
-		Integer percentualeOverbooking = this.getPercentualeOverbooking();
-		Integer maxPostiRealiDisponibili = this.getMaxPostiRealiDisponibili();
-		if(percentualeOverbooking != null && maxPostiRealiDisponibili != null) return ( percentualeOverbooking * maxPostiRealiDisponibili )/100;
-		return 0;
 	}
 
 	/** Controlla se il numero di posti richiesti è un numero realistico, ovvero

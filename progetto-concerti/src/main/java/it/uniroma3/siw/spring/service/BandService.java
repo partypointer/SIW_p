@@ -25,8 +25,8 @@ public class BandService {
     }
     
     @Transactional
-	public Band getBand(String name) {
-    	Optional<Band> result = this.bandRepository.findByNome(name);
+	public Band getBand(String nome) {
+    	Optional<Band> result = this.bandRepository.findByNome(nome);
 		return result.orElse(null);
 	}
 

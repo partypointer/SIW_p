@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,9 +45,24 @@ public class ConcertoService {
         return result;
     }
 
+    @Transactional
+    public List<Concerto> getAllConcertiBeforeToday() {
+        List<Concerto> result = new ArrayList<>();
+        Iterable<Concerto> iterable = this.concertoRepository.findAll();
+        LocalDate now = LocalDate.now();
+        for(Concerto concerto : iterable)
+            if(concerto.getDataInizio().compareTo(now) > 0) result.add(concerto);
+        return result;
+    }
+
     /** Non è @Transactional in quanto lo è la funzione che invoca **/
 	public boolean alreadyExists(Concerto concerto) {
 		if(this.getConcerto(concerto.getId()) != null) return true;
+		return false;
+	}
+	/** Non è @Transactional in quanto lo è la funzione che invoca **/
+	public boolean alreadyExists(String nome) {
+		if(this.getConcerto(nome) != null) return true;
 		return false;
 	}
 }

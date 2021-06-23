@@ -15,12 +15,13 @@ import it.uniroma3.siw.spring.controller.validator.AccountValidator;
 import it.uniroma3.siw.spring.controller.validator.ConcertoValidator;
 import it.uniroma3.siw.spring.model.Account;
 import it.uniroma3.siw.spring.model.Concerto;
+import it.uniroma3.siw.spring.service.AccountService;
 import it.uniroma3.siw.spring.service.BigliettoService;
 import it.uniroma3.siw.spring.service.ConcertoService;
 import it.uniroma3.siw.spring.service.TipologiaPostoService;
 
 @Controller
-public class PrenotazioniController {
+public class PrenotazioniController{
 
 	@Autowired
 	private ConcertoService concertoService;
@@ -30,12 +31,15 @@ public class PrenotazioniController {
 	
 	@Autowired
 	private TipologiaPostoService tipologiaPostoService;
-
+	
+	@Autowired
+	private AccountService accountService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(ConcertoValidator.class);
 
 	@RequestMapping(value = {"/prenotazioni"}, method = RequestMethod.GET)
-	public String prenotazioni(Model model, @ModelAttribute("accountCorrente") Account accountCorrente) {
-		model.addAttribute("concerti", concertoService.getAllConcerti());
+	public String prenotazioni(@ModelAttribute("accountCorrente") Account accountCorrente, Model model) {
+		model.addAttribute("concerti", concertoService.getAllConcertiBeforeToday());
 		model.addAttribute("biglietti", bigliettoService.getBigliettiFromAccount(accountCorrente.getId()));
 		return "prenotazioni";
 	}
@@ -55,4 +59,5 @@ public class PrenotazioniController {
 		//...
 		return "prenotazioni";
 	}
+	
 }
