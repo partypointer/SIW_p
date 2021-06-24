@@ -8,7 +8,10 @@
 	    <div class="container">
 	    	
 	    	<div class="bgpurple bordered panel">
-		    	<h3 th:text="#{successfulAdminOperation.msg}">C'è stato un errore, ci scusiamo per il disagio</h3>
+		    	<h3 th:text="#{successfulAdminOperation.msg}">Tutto ok</h3>
+		    	<a th:href="@{/admin/home}">
+					<button class="btn" th:text="#{successfulAdminOperation.areaRiservata}">Home</button>
+				</a>
 	   		</div>
 			
 			<div th:replace="fragments/base.html :: fondo" />

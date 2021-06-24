@@ -51,11 +51,12 @@ public @Data class Account {
     
     @Column(nullable = false)
 	private	LocalDateTime dataCreazione;
-    
+
+    /* L'Account è posseduto da uno User */
     @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
     private User user;
     
-    @OneToMany(mappedBy="proprietario")
+    @OneToMany(mappedBy="proprietario", cascade = CascadeType.ALL)
     private List<Biglietto> biglietti;
 
 	public Account(){

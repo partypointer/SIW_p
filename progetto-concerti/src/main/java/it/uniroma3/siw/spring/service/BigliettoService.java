@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.uniroma3.siw.spring.model.Account;
 import it.uniroma3.siw.spring.model.Biglietto;
 import it.uniroma3.siw.spring.repository.BigliettoRepository;
 
@@ -24,8 +25,8 @@ public class BigliettoService {
     }
 
     @Transactional
-    public List<Biglietto> getBigliettiFromAccount(Long id) {
-        return this.bigliettoRepository.findByProprietario(id);
+    public List<Biglietto> getBigliettiFromAccount(Account proprietario) {
+        return this.bigliettoRepository.findByProprietario(proprietario.getId());
     }
 
     @Transactional

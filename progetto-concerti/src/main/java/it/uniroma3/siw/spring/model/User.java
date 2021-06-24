@@ -26,6 +26,7 @@ public @Data class User {
     @Column(nullable = false)
 	private String cognome;
 
+    /* Lo User possiede un Account */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;

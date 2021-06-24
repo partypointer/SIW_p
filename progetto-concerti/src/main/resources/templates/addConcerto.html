@@ -10,15 +10,16 @@
 	    	<div class="bgpurple bordered panel">
 		    	<h3 class="paragraph" th:text="|#{addConcerto.msg.part.one} ${concertoScelto.nome} #{addConcerto.msg.part.two}|">MSG</h3>
 		    	<div class="bordered" th:each="tipologiaPosto : ${tipologiePosti}">
-			            <span class="concertoField" th:text="${tipologiaPosto.nome}">Bel posto</span><br>
-			            <span class="concertoField" th:text="${tipologiaPosto.descrizione}">Molto comodo, molto costoso</span><br>
-			            <span class="concertoField" th:text="|${tipologiaPosto.prezzoUnitario} €|">100 €</span><br>
-						<div>
-							<a th:href="@{|/addTipologiaPosto/${tipologiaPosto.id}|}">
+			        <span class="concertoField" th:text="${tipologiaPosto.nome}">Bel posto</span><br>
+			        <span class="concertoField" th:text="${tipologiaPosto.descrizione}">Molto comodo, molto costoso</span><br>
+			        <span class="concertoField" th:text="|${tipologiaPosto.prezzoUnitario} €|">100 €</span><br>
+			        <span class="concertoField" th:text="|${tipologiaPosto.postiAttualmentePrenotabili} #{addConcerto.postiDisponibili.msg}|">100 €</span><br>
+					<div>
+						<a th:href="@{|/addBiglietto/${tipologiaPosto.id}|}">
 							<img class="addSubtractIcon" th:src="@{/images/addIcon.png}" alt="icona">
-							</a>
-						</div>
-			        </div>
+						</a>
+					</div>
+			    </div>
 	   		</div>
 			
 			<div th:replace="fragments/base.html :: fondo" />

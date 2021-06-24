@@ -62,14 +62,16 @@ public @Data class TipologiaPosto {
 	/** Springboot sembra utilizzare il costruttore di default anche solo per generare
 	 * parti di modello, dato che all'inizio maxPostiRealiDisponibili e percentualeOverbooking
 	 * sono nulli, non si può calcolare in tale costruttore i posti di overbooking e dunque
-	 * i posti attualmente prenotabili: risulterebbe in un NullPointerException! **/
+	 * i posti attualmente prenotabili: risulterebbe in un NullPointerException!
+	 * VIENE CHIAMATO SOLO ALLA GENERAZIONE DEL BIGLIETTO **/
 	public void setPosti() {
 		this.calcolaPostiOverbooking();
 		this.calcolaPostiAttualmentePrenotabili();
 	}
 
 	/** Calcola i posti di overbooking data una percentuale sui posti attualmente
-	 * disponibili **/
+	 * disponibili
+	 * VIENE CHIAMATO SOLO ALLA GENERAZIONE DEL BIGLIETTO **/
 	private void calcolaPostiOverbooking(){
 		Integer percentualeOverbooking = this.getPercentualeOverbooking();
 		Integer maxPostiRealiDisponibili = this.getMaxPostiRealiDisponibili();
@@ -83,7 +85,8 @@ public @Data class TipologiaPosto {
 	}
 	
 	/** Calcola il numero di posti attualmente prenotabili sommando ai posti
-	 * attualmente disponibili quelli di overbooking **/
+	 * attualmente disponibili quelli di overbooking
+	 * VIENE CHIAMATO SOLO ALLA GENERAZIONE DEL BIGLIETTO **/
 	private void calcolaPostiAttualmentePrenotabili(){
 		Integer postiOverbooking = this.getPostiOverbooking();
 		Integer maxPostiRealiDisponibili = this.getMaxPostiRealiDisponibili();
@@ -100,10 +103,9 @@ public @Data class TipologiaPosto {
 		return 0L; // il valore nullo di Long
 	}
 	
-	
 	/** Decrementa il numero di posti prenotabili se vi è disponibilità ritornando
 	 * true, altrimenti ritorna solo false **/
-	private boolean riduciPosti(int numeroPosti){
+	public boolean riduciPosti(int numeroPosti){
 		if( this.checkDisponibilitaPrenotazione(numeroPosti) ) {
 			this.setPostiAttualmentePrenotabili(this.getPostiAttualmentePrenotabili() - numeroPosti);
 			return true;
@@ -112,8 +114,8 @@ public @Data class TipologiaPosto {
 	}
 	
 	/** Controlla se c'è disponibilità per prenotare "numeroPosti" posti **/
-	private boolean checkDisponibilitaPrenotazione(int numeroPosti){
-		if( numeroPosti <= this.getPostiAttualmentePrenotabili() && isValidNumeroDiPosti(numeroPosti) ) {
+	public boolean checkDisponibilitaPrenotazione(int numeroPosti){
+		if(numeroPosti <= this.getPostiAttualmentePrenotabili() && isValidNumeroDiPosti(numeroPosti) ) {
 			return true;
 		}
 		return false;
@@ -121,7 +123,7 @@ public @Data class TipologiaPosto {
 
 	/** Controlla se il numero di posti richiesti è un numero realistico, ovvero
 	 * maggiore di zero **/
-	private boolean isValidNumeroDiPosti(int numeroPosti) {
+	public boolean isValidNumeroDiPosti(int numeroPosti) {
 		if(numeroPosti > 0) return true;
 		return false;
 	}

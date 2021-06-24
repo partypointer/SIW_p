@@ -9,20 +9,18 @@
 	    	
 	    	<div class="bgpurple bordered panel">
 		    	<h1 class="title" th:text="#{index.title}"><u>Biglietteria</u></h1>
+		    	
+		    	<div th:fragment="logo">
+					<a th:href="@{/}">
+						<img class="bigLogo" th:src="@{/images/tickets.png}" alt="logo">
+					</a>
+				</div>
 
 				<h3 class="paragraph" th:text="#{index.paragraph.one}">Paragrafo 1</h3>
 				
-				<div>
-					<img class="imgConcerto" th:src="@{/images/concerto1.jpg}" alt="concert1">
-				</div>
-				<div>
-					<img class="imgConcerto" th:src="@{/images/concerto2.jpg}" alt="concert2">
-				</div>
-				<div>
-					<img class="imgConcerto" th:src="@{/images/concerto3.jpg}" alt="concert3">
-				</div>
+				<h3 class="strongParagraph" th:text="#{index.paragraph.two}">Paragrafo 2</h3>
 				
-				<h3 class="paragraph" th:text="#{index.paragraph.two}">Paragrafo 2</h3>
+				<h3 class="paragraph" th:text="#{index.paragraph.three}">Paragrafo 2</h3>
 
 		    	<div class="buttonlist">
 					<a th:href="@{/login}">
