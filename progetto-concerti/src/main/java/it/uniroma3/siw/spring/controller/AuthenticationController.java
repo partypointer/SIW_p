@@ -298,6 +298,7 @@ public class AuthenticationController{
 		for(int i = 0; i < bigliettiAccount.size() ;i++) {
 			Biglietto bigliettoCorrente = bigliettiAccount.get(i);
 			if(bigliettoDaRimuovere.getCode().equals(bigliettoCorrente.getCode())) {
+				logger.debug("MYINFO) rimozione da accountCorrente posizione i: " + i);
 				bigliettiAccount.remove(i);
 				isRimossoDaAccount = true;
 			}
@@ -319,6 +320,7 @@ public class AuthenticationController{
 			for(int i = 0; i < bigliettiTipologiaPosto.size() ;i++) {
 				Biglietto bigliettoCorrente = bigliettiTipologiaPosto.get(i);
 				if(bigliettoDaRimuovere.getCode().equals(bigliettoCorrente.getCode())) {
+					logger.debug("MYINFO) rimozione da tipologiaPosto posizione i: " + i);
 					bigliettiTipologiaPosto.remove(i);
 					isRimossoDaTipologiaPosto = true;
 				}
@@ -328,23 +330,26 @@ public class AuthenticationController{
 				logger.debug("MYINFO) isRimossoDaTipologiaPosto");
 				/* Aggiorna la lista di biglietti della tipologia di posto */
 				tipologiaPosto.setBiglietti(bigliettiTipologiaPosto);
+				logger.debug("MYINFO) ftest 1");
 
 				/* Trova la quantità di posti attualmente prenotabili */
 				int postiAttualmentePrenotabili = tipologiaPosto.getPostiAttualmentePrenotabili().intValue();
+				logger.debug("MYINFO) ftest 2");
 				/* Aggiunge un posto attualmente prenotabile! */
 				tipologiaPosto.setPostiAttualmentePrenotabili(postiAttualmentePrenotabili + 1);
+				logger.debug("MYINFO) ftest 3");
+
+				/* Aggiornamenti e salvataggi */
+				this.accountService.updateAccount(accountCorrente);
+				this.tipologiaPostoService.saveTipologiaPosto(tipologiaPosto);
+				model.addAttribute("accountCorrente", accountCorrente);
 				
 				/* Rimuove il biglietto dal database */
-				boolean isRimossoDalDb = this.bigliettoService.deleteBiglietto(bigliettoDaRimuovere);
+				//boolean isRimossoDalDb = this.bigliettoService.removeBiglietto(bigliettoDaRimuovere);
+				this.bigliettoService.deleteBiglietto(bigliettoDaRimuovere);
+				logger.debug("MYINFO) ftest 4");
 				
-				if(isRimossoDalDb) {
-					logger.debug("MYINFO) isRimossoDalDb");
-					/* Aggiorna e salva in maniera persistente */
-					this.accountService.updateAccount(accountCorrente);
-					this.tipologiaPostoService.saveTipologiaPosto(tipologiaPosto);
-					logger.debug("MYINFO) save all!");
-					return "eliminaBiglietto";
-				}
+				return "eliminaBiglietto";
 			}
 		}
 		

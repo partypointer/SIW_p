@@ -51,7 +51,13 @@ public class BigliettoService {
 	}
 	
 	@Transactional
-	public boolean deleteBiglietto(Biglietto bigliettoDaRimuovere) {
-		return this.bigliettoRepository.removeById(bigliettoDaRimuovere.getId());
+	public boolean removeBiglietto(Biglietto bigliettoDaRimuovere) {
+		if(this.bigliettoRepository.removeById(bigliettoDaRimuovere.getId()) > 0) return true;
+		return false;
+	}
+	
+	@Transactional
+	public void deleteBiglietto(Biglietto bigliettoDaRimuovere) {
+		this.bigliettoRepository.deleteById(bigliettoDaRimuovere.getId());
 	}
 }
