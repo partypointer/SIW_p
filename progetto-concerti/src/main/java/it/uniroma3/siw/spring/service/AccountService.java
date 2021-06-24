@@ -31,11 +31,18 @@ public class AccountService {
 		Optional<Account> result = this.accountRepository.findByUsername(username);
 		return result.orElse(null);
 	}
-		
+
+	/** Attenzione! Ricodifica la password! **/
     @Transactional
     public Account saveAccount(Account Account) {
         Account.setRuolo(Account.DEFAULT_RUOLO);
         Account.setPassword(this.passwordEncoder.encode(Account.getPassword()));
+        return this.accountRepository.save(Account);
+    }
+
+    /** Rispetto a save account non ricodifica la password! **/
+    @Transactional
+    public Account updateAccount(Account Account) {
         return this.accountRepository.save(Account);
     }
     

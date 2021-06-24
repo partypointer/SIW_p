@@ -26,7 +26,7 @@ public class BigliettoService {
 
     @Transactional
     public List<Biglietto> getBigliettiFromAccount(Account proprietario) {
-        return this.bigliettoRepository.findByProprietario(proprietario.getId());
+        return this.bigliettoRepository.findByProprietario(proprietario);
     }
 
     @Transactional
@@ -48,5 +48,10 @@ public class BigliettoService {
 	public boolean alreadyExists(Biglietto biglietto) {
 		if(this.getBiglietto(biglietto.getId()) != null) return true;
 		return false;
+	}
+	
+	@Transactional
+	public boolean deleteBiglietto(Biglietto bigliettoDaRimuovere) {
+		return this.bigliettoRepository.removeById(bigliettoDaRimuovere.getId());
 	}
 }

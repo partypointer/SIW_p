@@ -17,6 +17,7 @@ https://www.baeldung.com/java-aes-encryption-decryption
 */
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -56,7 +57,7 @@ public @Data class Account {
     @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
     private User user;
     
-    @OneToMany(mappedBy="proprietario", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="proprietario", cascade = CascadeType.ALL)
     private List<Biglietto> biglietti;
 
 	public Account(){

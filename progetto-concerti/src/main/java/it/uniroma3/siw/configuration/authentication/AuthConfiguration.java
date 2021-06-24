@@ -51,6 +51,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 							"/addBiglietto/**",
                 							"/concludiOrdine/**",
                 							"/prenotazioneFail",
+                							"/eliminaBiglietto/**",
                 							"/css/**",
                 							"/images/**").permitAll()
                 // chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 

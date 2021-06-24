@@ -1,6 +1,7 @@
 package it.uniroma3.siw.spring.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
@@ -9,5 +10,7 @@ import it.uniroma3.siw.spring.model.Biglietto;
 
 public interface BigliettoRepository extends CrudRepository<Biglietto, Long> {
 	//public List<Biglietto> findByProprietario(Account proprietario);
-	public List<Biglietto> findByProprietario(Long proprietario);
+	public List<Biglietto> findByProprietario(Account proprietario);
+	
+	public boolean removeById(Long id);
 }

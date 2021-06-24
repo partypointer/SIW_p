@@ -28,8 +28,8 @@ import it.uniroma3.siw.spring.service.BigliettoService;
 import it.uniroma3.siw.spring.service.ConcertoService;
 import it.uniroma3.siw.spring.service.TipologiaPostoService;
 
-@Controller
-public class PrenotazioniController extends SessionCheckerController{
+//@Controller
+public class PrenotazioniController extends AuthenticationController{
 
 	@Autowired
 	private ConcertoService concertoService;
@@ -135,7 +135,7 @@ public class PrenotazioniController extends SessionCheckerController{
 				nuovoBiglietto.setDataAcquisizione(LocalDateTime.now());
 				nuovoBiglietto.setProprietario(accountCorrente);
 				nuovoBiglietto.setTipologiaPosto(tipologiaPosto);
-				nuovoBiglietto.generateCode();
+				nuovoBiglietto.generateCode(i);
 				
 				/* Aggiornamento lista biglietti dell'account corrente */
 				bigliettiAccount.add(nuovoBiglietto);
